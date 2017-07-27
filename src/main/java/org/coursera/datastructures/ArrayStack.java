@@ -3,11 +3,9 @@ package org.coursera.datastructures;
 public class ArrayStack implements MyStack {
     private String[] stack;
     private int head;
-    private int capacity;
 
     public ArrayStack() {
-        capacity = 1;
-        stack = new String[capacity];
+        stack = new String[1];
         head = 0;
     }
 
@@ -18,7 +16,10 @@ public class ArrayStack implements MyStack {
 
     @Override
     public void push(String item) {
-        resize(capacity + 1);
+        if (head == stack.length) {
+            resize(stack.length * 2);
+        }
+
         stack[head++] = item;
     }
 
@@ -26,9 +27,12 @@ public class ArrayStack implements MyStack {
     public String pop() {
         if (isEmpty()) throw new StackUnderflowException();
 
+        if (head > 0 && head <= stack.length / 4) {
+            resize(stack.length / 2);
+        }
+
         String item = stack[--head];
         stack[head] = null;
-        resize(capacity - 1);
 
         return item;
     }
@@ -40,11 +44,10 @@ public class ArrayStack implements MyStack {
 
     private void resize(int newCapacity) {
         String[] newStack = new String[newCapacity];
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < head; i++) {
             newStack[i] = stack[i];
         }
 
-        capacity = newCapacity;
         stack = newStack;
     }
 }

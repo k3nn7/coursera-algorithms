@@ -1,7 +1,6 @@
 package org.coursera;
 
 import org.coursera.datastructures.ArrayStack;
-import org.coursera.datastructures.LinkedListStack;
 import org.coursera.datastructures.MyStack;
 
 public class Client {
