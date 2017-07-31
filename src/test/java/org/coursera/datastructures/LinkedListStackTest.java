@@ -46,7 +46,7 @@ public class LinkedListStackTest {
     }
 
     @Test
-    public void isFIFO() {
+    public void isLIFO() {
         String item1 = "item1", item2 = "item2";
 
         stack.push(item1);
@@ -56,7 +56,7 @@ public class LinkedListStackTest {
         assertEquals(item1, stack.pop());
     }
 
-    @Test(expected = StackUnderflowException.class)
+    @Test(expected = UnderflowException.class)
     public void stackUnderflow() {
         stack.pop();
     }

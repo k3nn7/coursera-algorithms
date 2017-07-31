@@ -28,7 +28,7 @@ public class LinkedListStack implements MyStack {
 
     @Override
     public String pop() {
-        if (isEmpty()) throw new StackUnderflowException();
+        if (isEmpty()) throw new UnderflowException();
 
         Node popped = head;
         head = popped.next;

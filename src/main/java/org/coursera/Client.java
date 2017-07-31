@@ -1,25 +1,25 @@
 package org.coursera;
 
-import org.coursera.datastructures.ArrayStack;
-import org.coursera.datastructures.MyStack;
+import org.coursera.datastructures.LinkedListQueue;
+import org.coursera.datastructures.MyQueue;
 
 public class Client {
-    private static MyStack stack;
+    private static MyQueue queue;
 
     public static void main(String[] args) {
         System.out.println("Testing LinkedListStack performance");
 
-        stack = new ArrayStack();
+        queue = new LinkedListQueue();
 
-        measureStackPerformance(40000);
+        measureQueuePerformance(40000);
 
     }
 
-    private static void measureStackPerformance(int itemsCount) {
+    private static void measureQueuePerformance(int itemsCount) {
         long startTime = System.currentTimeMillis();
 
         for (int i = 0; i < itemsCount; i++) {
-            stack.push("foo");
+            queue.enqueue("foo");
         }
 
         long elapsedTime = System.currentTimeMillis() - startTime;

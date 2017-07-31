@@ -25,7 +25,7 @@ public class ArrayStack implements MyStack {
 
     @Override
     public String pop() {
-        if (isEmpty()) throw new StackUnderflowException();
+        if (isEmpty()) throw new UnderflowException();
 
         if (head > 0 && head <= stack.length / 4) {
             resize(stack.length / 2);
