@@ -3,23 +3,29 @@ package org.coursera.datastructures;
 public class ArrayQueue implements MyQueue {
     private int head = 0;
     private int tail = 0;
-    private int size = 1;
+    private int size = 0;
     private String[] items;
 
     public ArrayQueue() {
-        items = new String[size];
+        items = new String[2];
     }
 
     @Override
     public void enqueue(String item) {
-        if (head == size) resize(size * 2);
+        if (size == items.length) resize(size * 2);
+        if (head == items.length) head = 0;
 
         items[head++] = item;
-
+        size++;
     }
 
     @Override
     public String dequeue() {
+        if (isEmpty()) throw new UnderflowException();
+
+        size--;
+        if (size > 0 && size == items.length / 4) resize(items.length / 2);
+        if (tail == items.length) tail = 0;
         return items[tail++];
     }
 
@@ -30,16 +36,18 @@ public class ArrayQueue implements MyQueue {
 
     @Override
     public int size() {
-        return head - tail;
+        return size;
     }
 
     private void resize(int newSize) {
         String[] newItems = new String[newSize];
 
-        for (int i = 0; i < head; i++) {
-            newItems[i] = items[i];
+        for (int i = 0; i < size; i++) {
+            newItems[i] = items[(i + head) % items.length];
         }
 
+        tail = 0;
+        head = size;
         items = newItems;
     }
 }

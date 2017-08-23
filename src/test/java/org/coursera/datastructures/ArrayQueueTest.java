@@ -20,14 +20,14 @@ public class ArrayQueueTest {
     }
 
     @Test
-    public void itShouldNotBeEmptyAfterPush() {
+    public void itShouldNotBeEmptyAfterEnqueue() {
         queue.enqueue("foo");
         assertFalse(queue.isEmpty());
         assertEquals(1, queue.size());
     }
 
     @Test
-    public void itShouldBeEmptyAfterPushAndPop() {
+    public void itShouldBeEmptyAfterEnqueueAndDequeue() {
         queue.enqueue("abc");
         queue.dequeue();
 
@@ -55,6 +55,12 @@ public class ArrayQueueTest {
 
         assertEquals(item1, queue.dequeue());
         assertEquals(item2, queue.dequeue());
+
+        queue.enqueue(item2);
+        queue.enqueue(item1);
+
+        assertEquals(item2, queue.dequeue());
+        assertEquals(item1, queue.dequeue());
     }
 
     @Test(expected = UnderflowException.class)
