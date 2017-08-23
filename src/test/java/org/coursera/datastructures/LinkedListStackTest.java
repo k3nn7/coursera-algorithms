@@ -56,7 +56,7 @@ public class LinkedListStackTest {
         assertEquals(item1, stack.pop());
     }
 
-    @Test(expected = StackUnderflowException.class)
+    @Test(expected = UnderflowException.class)
     public void stackUnderflow() {
         stack.pop();
     }
